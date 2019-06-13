@@ -1,8 +1,11 @@
 var challenges;
 var user_solves = [];
 var templates = {};
-var total_score = 0;
+
 var team_score = 0;
+var total_score = 0;
+var team_challenges = 0;
+var total_challenges = 0;
 
 window.challenge = new Object();
 
@@ -229,15 +232,18 @@ function load_user_solves(cb) {
       response
     ) {
       team_score = 0;
+      team_challenges = 0;
       var solves = response.data;
 
       for (var i = solves.length - 1; i >= 0; i--) {
         team_score += solves[i].challenge.value;
+        team_challenges++;
         var chal_id = solves[i].challenge_id;
         user_solves.push(chal_id);
       }
       console.log("Your team has " + team_score + " points.");
       $("#team-score").text(team_score);
+      $("#team-chals").text(team_challenges);
       if (cb) {
         cb();
       }
@@ -333,6 +339,7 @@ function loadchals(cb) {
       var chalheader = $("<p>{0}</p>".format(chalinfo.name));
       var chalscore = $("<span>{0}</span>".format(chalinfo.value));
       total_score += chalinfo.value;
+      total_challenges++;
       for (var j = 0; j < chalinfo.tags.length; j++) {
         var tag = "tag-" + chalinfo.tags[j].value.replace(/ /g, "-");
         chalwrap.addClass(tag);
@@ -349,6 +356,7 @@ function loadchals(cb) {
 
     console.log("Available points: " + total_score);
     $("#total-score").text(total_score);
+    $("#total-chals").text(total_challenges);
 
     $(".challenge-button").click(function(e) {
       loadchal(this.value);
