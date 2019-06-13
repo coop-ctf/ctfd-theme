@@ -23,7 +23,7 @@ table > thead > tr > td {
 }
 
 #score-graph {
-  height: 450px;
+  height: 600px;
   display: block;
   clear: both;
 }

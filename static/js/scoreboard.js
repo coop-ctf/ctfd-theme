@@ -36,7 +36,7 @@ function UTCtoDate(utc) {
 }
 
 function scoregraph() {
-  $.get(script_root + "/api/v1/scoreboard/top/10", function(response) {
+  $.get(script_root + "/api/v1/scoreboard/top/100", function(response) {
     var places = response.data;
 
     if (Object.keys(places).length === 0) {
@@ -82,7 +82,7 @@ function scoregraph() {
     });
 
     var layout = {
-      title: "Top 10 Teams",
+      title: "Team Progress",
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(0,0,0,0)",
       hovermode: "closest",
