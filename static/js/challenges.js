@@ -283,6 +283,7 @@ function getsolves(id) {
 function loadchals(cb) {
   $.get(script_root + "/api/v1/challenges", function(response) {
     total_score = 0;
+    total_challenges = 0;
     var categories = [];
     challenges = response.data;
 
